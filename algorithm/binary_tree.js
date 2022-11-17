@@ -1,0 +1,8 @@
+<html>
+
+
+<script>
+
+    document.write('hello world')
+</script>
+</html>
