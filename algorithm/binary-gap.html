@@ -1,0 +1,45 @@
+<html>    
+    <title>Binary Gap</title>
+    <body>
+        <center><br>
+            <label>Enter Number:</label>&nbsp;&nbsp;<input type="number" id="number">
+            <button type="button" id="btn" onclick="findGap()">&nbsp;&nbsp;Click to Check Binary Gap!</button><br>
+            <hr>
+            <h2 style="color:green" id="binary"></h2>
+            <h2 style="color:green" id="binarygap"></h2>
+        </center>
+    </body>
+    <script>       
+        function findGap(){            
+            let number = parseInt(document.getElementById('number').value);    
+            const binaryNumber = number.toString(2);         
+            var binaryGap = [], gapLength = 0 ,found = false;
+            // let rem = 0,i=1,binaryNumber=0,tempArr=[];           
+            // while(number > 0){
+            //     let rem = number % 2;                
+            //     number =  parseInt(number / 2);                 
+            //     tempArr.push(rem);                
+            // }
+            // binaryNumber = tempArr.reverse().join("");
+            document.getElementById('binary').innerHTML = 'Binary Number : '+binaryNumber;
+            for (let index = 0; index < binaryNumber.length; index++) {                 
+                if(binaryNumber[index] == 1){                     
+                    for(let j = index+1; j<=binaryNumber.length; j++){
+                        if(binaryNumber[j]==0){gapLength++;}
+                        if(binaryNumber[j]==1) { found = true;break;}
+                    }
+                    if(found){
+                        binaryGap.push(gapLength);
+                        found = false;
+                    }
+                }
+                gapLength=0;
+            }   
+            if(binaryGap.length>0){
+                document.getElementById('binarygap').innerHTML = 'Largest Binary Gap is : '+ Math.max.apply(Math,binaryGap);
+            }else{
+                document.getElementById('binarygap').innerHTML = 'Largest Binary Gap is : '+ 0;
+            }        
+        }
+        </script>
+</html>
